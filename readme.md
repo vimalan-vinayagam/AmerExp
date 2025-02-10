@@ -15,7 +15,7 @@ This framework is built using **Java + Selenium + TestNG + Cucumber** for automa
 ## ⚙️ Installation & Setup
 1. **Clone the Repository**  
    ```sh
-   git clone https://github.com/your-repo-name.git
+   git clone https://github.com/vimalan-vinayagam/AmerExp.git
 
 ## Execution Commends
 first time = mvn clean package 
