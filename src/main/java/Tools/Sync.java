@@ -37,12 +37,12 @@ public class Sync   {
 
     }
 
-    public WebElement waitForElementToVisible(WebElement element){
-        return wait.until(ExpectedConditions.visibilityOf(element));
+    public void waitForElementToVisible(WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public WebElement waitForElementToVisibleClickable(WebElement element){
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    public void waitForElementToVisibleClickable(WebElement element){
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
 
