@@ -6,14 +6,13 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Logger;
 
 @CucumberOptions(features = "src/test/resources/parallel",
@@ -33,25 +32,25 @@ public class RunnerNGTest extends AbstractTestNGCucumberTests {
     @BeforeClass
     public void LaunchBrowser(@Optional("Chrome") String Browser){
         log.info("************************* Launching browser*****************************");
-        driver = BaseClass.init_driver(Browser);
+        driver = BaseClass.getInstance().init_driver(Browser);
 
-    }
-    @AfterClass
-    public void teardown() {
-        log.info("************************* Browser got closed*****************************");
-        driver.quit();
     }
 
     @AfterClass
-    public void screenShot(ITestContext context) throws IOException {
-        if (context.getFailedTests().size() > 0) {
+    public void teardown(ITestContext context) throws IOException {
+        if (!context.getFailedTests().getAllResults().isEmpty()) {
             log.info("************************* Screen shot for failed test cases*****************************");
-            TakesScreenshot ts = (TakesScreenshot) driver;
-            File src = ts.getScreenshotAs(OutputType.FILE);
-            File dest = new File("failedImp/screenshot.png");
+            File dest = new File("failedImp/screenshot_" + System.currentTimeMillis() + ".png");
+            if (!dest.getParentFile().exists()) {
+                boolean created = dest.getParentFile().mkdirs();
+                log.info("Directory created: " + created);
+            }
+            File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             Files.copy(src.toPath(), dest.toPath());
-
         }
+
+        log.info("************************* Browser got closed*****************************");
+        BaseClass.quitDriver();
     }
 
 }

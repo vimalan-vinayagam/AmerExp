@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ConfigDataProvider extends BaseClass {
+public class ConfigDataProvider {
     private static ConfigDataProvider config;
     private final Properties properties;
 

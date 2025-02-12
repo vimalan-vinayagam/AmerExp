@@ -1,25 +1,28 @@
 package Actions;
 
 import OR.BasicUI;
+import Tools.BaseClass;
 import Utils.ObjectGenerator;
 import Utils.PropertyReader;
 import org.openqa.selenium.WebDriver;
 
+import static Tools.BaseClass.getDriver;
+
+
 
 public class BasicAction extends BasicUI {
-        protected WebDriver driver;
-   static ObjectGenerator OG = getObjectGenerator();
-
+    protected WebDriver driver;
+    protected ObjectGenerator OG;
 
     public BasicAction() {
-        super();
-        this.driver = getDriver();
-        OG.initPage();
+        this.driver = getDriver(); // Get driver from BaseClass
+        this.OG = BaseClass.getObjectGenerator(); // Ensure thread safety
+        OG.initPage(); // Initialize page objects
     }
 
     public boolean verifyFRhomePageDisplays() {
         boolean IsVerified = true;
-        OG.sync.ImplicityWait(driver,5);
+        OG.sync.waitForElementToVisible(BtnRejectAlert);
         if (BtnRejectAlert.isDisplayed()){
             BtnRejectAlert.click();
         }
@@ -43,7 +46,7 @@ public class BasicAction extends BasicUI {
 
     public boolean verifyCartesAmericanExpress(){
         boolean IsVerify = true;
-        OG.sync.ImplicityWait(driver,5);
+        OG.sync.waitForElementToVisible(BtnRejectAlert);
         if (BtnRejectAlert.isDisplayed()){
             BtnRejectAlert.click();
         }

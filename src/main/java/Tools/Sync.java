@@ -8,11 +8,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-public class Sync extends BaseClass   {
+
+import static Tools.BaseClass.getDriver;
+
+public class Sync   {
     WebDriverWait wait;
 
     public Sync(){
-        this.wait = new WebDriverWait(Driver.get(), Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
     }
     public  void waitForSeconds(int lngSeconds) {
         try {

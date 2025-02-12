@@ -2,7 +2,7 @@ package Utils;
 
 import Tools.*;
 
-public class ObjectGenerator extends  BaseClass {
+public class ObjectGenerator {
 
     public Elements ele;
     public Sync sync;

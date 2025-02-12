@@ -11,25 +11,22 @@ public class TextBox   {
     ObjectGenerator OG = getObjectGenerator();
 
 
-    public  boolean enterValue(WebElement element, String strValue) {
-        boolean isValueEntered = false;
+    public void enterValue(WebElement element, String strValue) {
         try {
             OG.sync.waitForSeconds(3000);
             if (element.isDisplayed()) {
-                String NewTxt = strValue;
                 String strOldText= OG.textBox.getText(element);
-                if((strOldText == null) && (strOldText.isEmpty())){
+                if((strOldText == null) || (strOldText.isEmpty())){
                     element.sendKeys(Keys.chord(Keys.CONTROL,"a",Keys.DELETE));
                     element.sendKeys(strValue);
                 }
-                else if (NewTxt.equals(strOldText)){
-                    System.out.println(NewTxt +" Already Value is entered");
+                else if (strValue.equals(strOldText)){
+                    System.out.println(strValue +" Already Value is entered");
                 }
                 else{
                     element.sendKeys(Keys.chord(Keys.CONTROL,"a",Keys.DELETE));
                     element.sendKeys(strValue);
                 }
-                isValueEntered = true;
             } else {
                 System.out.println("Element not found to enter value");
             }
@@ -37,7 +34,6 @@ public class TextBox   {
 
             System.out.println("Element not found" + e);
         }
-        return isValueEntered;
     }
 
 

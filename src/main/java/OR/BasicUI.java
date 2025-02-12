@@ -6,7 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class BasicUI extends BaseClass {
+import static Tools.BaseClass.getDriver;
+
+public class BasicUI {
 
     public BasicUI()
     {
