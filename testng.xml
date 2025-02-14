@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" parallel="tests" thread-count="3">
-    <test name="RunChrome">
-        <parameter name="BrowserType" value="Chrome"/>
+    <test name="RunTest">
+<!--        <parameter name="BrowserType" value="Chrome"/>-->
+        <parameter name="RunType" value="API"/>
         <classes>
             <class name="parallel.RunnerNGTest"/>
         </classes>
-</test>
+    </test>
+
 <!--    <test name="RunFirefox">-->
 <!--        <parameter name="BrowserType" value="Firefox"/>-->
 <!--        <classes>-->

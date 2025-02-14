@@ -12,7 +12,7 @@ public class PropertyReader {
                     .getPropertyFile()
                     .getProperty(key.toLowerCase());
         } catch (IOException e) {
-            throw new Exception(e.getLocalizedMessage());
+            throw new CustomException(e.getLocalizedMessage());
         }
 
     }

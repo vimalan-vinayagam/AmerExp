@@ -1,7 +1,9 @@
 package Utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigDataProvider {
@@ -20,7 +22,14 @@ public class ConfigDataProvider {
     }
 
     public Properties getPropertyFile() throws IOException {
-        properties.load(new FileInputStream(System.getProperty("user.dir")+"/Data/Config.properties"));
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("Config.properties");) {
+            if (input == null) {
+                throw new CustomException("File not found in the directory : " + input);
+            }
+            properties.load(input);
+        } catch (IOException e) {
+            throw new CustomException("Failed to load file : "+e);
+        }
         return properties;
     }
 
